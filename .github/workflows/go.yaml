@@ -75,4 +75,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/{{env.CONTAINER_IMAGE_NAME}}:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.CONTAINER_IMAGE_NAME }}:latest
