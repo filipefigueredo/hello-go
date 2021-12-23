@@ -27,9 +27,9 @@ jobs:
 
       - name: Linting the code
         run: |
-        go env
-        go install golang.org/x/lint/golint
-        golint ./...
+          go env
+          go install golang.org/x/lint/golint
+          golint ./...
 
       - name: Running unit tests
         run: go test -v ./...
