@@ -1,0 +1,21 @@
+name: Build and push docker image
+
+on:
+  schedule:
+  - cron: "*/5 * * * *"
+
+jobs:
+  ## Build, test and lint Go application
+  remove-application:
+    name: Remove Container App
+    # A strategy creates a build matrix for your jobs. You can define different variations to run each job in.
+    strategy:
+      matrix:
+        os-version: [ubuntu-20.04]
+    runs-on: ${{ matrix.os-version }}
+    steps:
+
+      - name: Echo Date
+        run: |
+          echo "I am a scheduled task running every 5 mins"
+          date -u +"%Y-%m-%dT%H:%M:%S.000Z"
