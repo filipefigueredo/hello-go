@@ -1,0 +1,77 @@
+name: Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  ## Build Go
+  build-application:
+    name: Build application
+    strategy:
+      matrix:
+        os-version: [ubuntu-20.04]
+        go-version: [1.17]
+    runs-on: ${{ matrix.os-version }}
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          # The Go version to download (if necessary) and use.
+          go-version: matrix.go-version
+      
+      - name: Checkout repository codebase
+        uses: actions/checkout@v2
+
+      - name: Linting the code
+        run: |
+        go env
+        go install golang.org/x/lint/golint
+        golint ./...
+
+      - name: Running unit tests
+        run: go test -v ./...
+
+      - name: Build application
+        run: go build -v ./...
+
+      - name: Run unit t
+        run: go test -v ./...
+  
+  ## Build docker and publish it
+  build-container-image:  
+    name: Build container image
+    strategy:
+      matrix:
+        os-version: [ubuntu-20.04]
+    runs-on: ${{ matrix.os-version }}
+    env:
+      CONTAINER_IMAGE_NAME: demo-app
+    steps:
+      - name: Checkout repository codebase
+        uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_CONTAINER_REGISTRY_TOKEN }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/{{env.CONTAINER_IMAGE_NAME}}:latest
