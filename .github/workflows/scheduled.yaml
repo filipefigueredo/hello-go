@@ -2,7 +2,7 @@ name: Scheduled
 
 on:
   schedule:
-  - cron: "*/5 * * * *"
+  - cron: '*/2 * * * *'
 
 jobs:
   ## Build, test and lint Go application
