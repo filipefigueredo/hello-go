@@ -45,10 +45,3 @@ jobs:
           SNYK_TOKEN: ${{ secrets.snyk_token }}
         with:
           command: monitor
-      
-      # Uploads resulting SARIF file to GitHub Code Scanning
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          # Path to SARIF file relative to the root of the repository
-          sarif_file: snyk.sarif
