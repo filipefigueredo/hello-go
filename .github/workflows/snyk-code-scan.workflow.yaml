@@ -15,7 +15,7 @@ on:
         type: string
 
     secrets:
-      snyk_api token:
+      snyk_api_token:
         description: Snyk API Token
         required: true
 
