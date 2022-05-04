@@ -11,4 +11,4 @@ jobs:
     with:
       language-tooling: golang
     secrets:
-      snyk_api_token: ${{ secrets.SNYK_API_TOKEN }
+      snyk_api_token: ${{ secrets.SNYK_API_TOKEN }}
