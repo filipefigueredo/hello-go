@@ -12,3 +12,8 @@ jobs:
       language-tooling: golang
     secrets:
       snyk_api_token: ${{ secrets.SNYK_API_TOKEN }}
+  
+  gitleaks:
+    name: gitleaks repository scan
+    uses: filipefigueredo/hello-go/.github/workflows/gitleaks-repository-scan.workflow.yaml@master
+
