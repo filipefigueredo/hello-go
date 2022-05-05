@@ -16,4 +16,12 @@ jobs:
   gitleaks:
     name: gitleaks repository scan
     uses: filipefigueredo/hello-go/.github/workflows/gitleaks-repository-scan.workflow.yaml@master
-
+  
+  polaris:
+    name: polaris workflow
+    uses: filipefigueredo/hello-go/.github/workflows/polaris-scan.workflow.yaml@master
+    with:
+      polaris_project_name: 'my-project-name'
+      polaris_server_url: 'https://my-polaris-url.com'
+    secrets:
+      polaris_access_token: ${{ secrets.POLARIS_API_TOKEN }}
