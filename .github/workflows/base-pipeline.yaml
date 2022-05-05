@@ -7,7 +7,7 @@ jobs:
   # Apply Infrastructure configurations when action=='create'.
   snyk:
     name: Code security scan
-    uses: filipefigueredo/hello-go/.github/workflows/snyk-code-scan.workflow.yaml@master
+    uses: Nmbrs/reusable-workflows/.github/workflows/snyk-code-scan.workflow.yaml@demo-sec
     with:
       language-tooling: golang
     secrets:
@@ -15,11 +15,11 @@ jobs:
   
   gitleaks:
     name: gitleaks repository scan
-    uses: filipefigueredo/hello-go/.github/workflows/gitleaks-repository-scan.workflow.yaml@master
+    uses: Nmbrs/reusable-workflows/.github/workflows/gitleaks-repository-scan.workflow.yaml@demo-sec
   
   polaris:
     name: polaris workflow
-    uses: filipefigueredo/hello-go/.github/workflows/polaris-scan.workflow.yaml@master
+    uses: Nmbrs/reusable-workflows/.github/workflows/polaris-scan.workflow.yaml@demo-sec
     with:
       polaris_project_name: 'my-project-name'
       polaris_server_url: 'https://my-polaris-url.com'
