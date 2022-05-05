@@ -8,10 +8,6 @@ on:
         description: "Path to gitleaks TOML config file"
         required: false
         type: string
-      target-directory:
-        description: "Target working directory"
-        required: false
-        type: string
 
 jobs:
   gitleaks-scan:

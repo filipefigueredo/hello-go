@@ -9,10 +9,6 @@ on:
         required: false
         type: string
         default: dotnet
-      target-directory:
-        description: "Target working directory"
-        required: false
-        type: string
 
     secrets:
       snyk_api_token:
@@ -27,7 +23,6 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ${{ inputs.target-directory }}
 
     steps:
       - name: checkout repository
