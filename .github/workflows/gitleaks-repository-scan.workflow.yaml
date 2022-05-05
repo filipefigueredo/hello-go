@@ -8,7 +8,6 @@ on:
         description: "Path to gitleaks TOML config file"
         required: false
         type: string
-        default: .
 
 jobs:
   gitleaks-scan:
@@ -18,7 +17,6 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ${{ inputs.target-directory }}
 
     steps:
       - name: checkout repository
